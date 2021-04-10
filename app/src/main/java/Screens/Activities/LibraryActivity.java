@@ -1,12 +1,12 @@
-package com.example.mobilszoftver2021.Screens.Activities;
+package Screens.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.mobilszoftver2021.Presenter.LibraryPresenter;
+import Presenter.LibraryPresenter;
 import com.example.mobilszoftver2021.R;
-import com.example.mobilszoftver2021.Screens.Interaces.ILibraryScreen;
+import Screens.Interaces.ILibraryScreen;
 
 public class LibraryActivity extends AppCompatActivity implements ILibraryScreen {
 

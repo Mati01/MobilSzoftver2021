@@ -1,6 +1,6 @@
-package com.example.mobilszoftver2021.Presenter;
+package Presenter;
 
-import com.example.mobilszoftver2021.Screens.Interaces.ICreatorScreen;
+import Screens.Interaces.ICreatorScreen;
 
 public class CreatorPresenter{
 

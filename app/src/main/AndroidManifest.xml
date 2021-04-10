@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MobilSzoftver2021">
-        <activity android:name=".Screens.Activities.DetailsActivity"></activity>
-        <activity android:name=".Screens.Activities.CreatorActivity" />
-        <activity android:name=".Screens.Activities.LibraryActivity">
+        <activity android:name="Screens.Activities.DetailsActivity"></activity>
+        <activity android:name="Screens.Activities.CreatorActivity" />
+        <activity android:name="Screens.Activities.LibraryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

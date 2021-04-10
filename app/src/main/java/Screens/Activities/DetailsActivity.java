@@ -1,13 +1,13 @@
-package com.example.mobilszoftver2021.Screens.Activities;
+package Screens.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.mobilszoftver2021.Presenter.DetailsPresenter;
-import com.example.mobilszoftver2021.Presenter.LibraryPresenter;
+import Presenter.DetailsPresenter;
+
 import com.example.mobilszoftver2021.R;
-import com.example.mobilszoftver2021.Screens.Interaces.IDetailsScreen;
+import Screens.Interaces.IDetailsScreen;
 
 public class DetailsActivity extends AppCompatActivity implements IDetailsScreen {
 
