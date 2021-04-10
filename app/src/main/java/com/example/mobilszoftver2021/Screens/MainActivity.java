@@ -1,8 +1,10 @@
-package com.example.mobilszoftver2021;
+package com.example.mobilszoftver2021.Screens;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.mobilszoftver2021.R;
 
 public class MainActivity extends AppCompatActivity {
 
