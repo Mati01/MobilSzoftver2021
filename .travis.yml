@@ -21,6 +21,9 @@ env:
 
 sudo: required
 
+licenses:
+  - '.+'
+
 before_install:
   - yes | sdkmanager "platforms;android-28"
 
