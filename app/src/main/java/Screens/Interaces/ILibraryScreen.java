@@ -1,4 +1,4 @@
 package Screens.Interaces;
 
-public interface ILibraryScreen {
+public interface ILibraryScreen extends IScreenBase {
 }

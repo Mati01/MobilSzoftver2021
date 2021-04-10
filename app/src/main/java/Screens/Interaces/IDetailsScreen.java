@@ -1,4 +1,4 @@
 package Screens.Interaces;
 
-public interface IDetailsScreen {
+public interface IDetailsScreen extends IScreenBase {
 }
