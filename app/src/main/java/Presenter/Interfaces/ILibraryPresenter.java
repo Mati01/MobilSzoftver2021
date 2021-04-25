@@ -1,13 +1,10 @@
 package Presenter.Interfaces;
 
-import java.util.List;
-
-import Model.BookCard;
 import Screens.Interaces.ILibraryScreen;
 
 public interface ILibraryPresenter extends IPresenterBase<ILibraryScreen>{
 
-    List<BookCard> GetBookCards(String searchCriteria);
+    void GetBooklets(String title, String author);
 
-    Boolean DeleteBookCard(int id);
+    void DeleteBook(int id);
 }

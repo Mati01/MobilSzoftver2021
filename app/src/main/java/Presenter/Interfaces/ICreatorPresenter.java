@@ -1,9 +1,11 @@
 package Presenter.Interfaces;
 
-import Model.BookDetail;
+import Model.Book;
 import Screens.Interaces.ICreatorScreen;
 
 public interface ICreatorPresenter extends IPresenterBase<ICreatorScreen> {
 
-    Boolean CreateBook(BookDetail newBook);
+    void CreateBook(Book book);
+
+    void UpdateBook(Book book);
 }

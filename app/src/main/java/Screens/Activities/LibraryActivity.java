@@ -6,8 +6,11 @@ import android.os.Bundle;
 
 import Dagger.DaggerPresenterComponent;
 import Dagger.PresenterComponent;
+import Model.Booklet;
 import Presenter.Interfaces.ILibraryPresenter;
 import com.example.mobilszoftver2021.R;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -37,5 +40,20 @@ public class LibraryActivity extends AppCompatActivity implements ILibraryScreen
     protected void  onStop() {
         super.onStop();
         this.presenter.DetachScreen();
+    }
+
+    @Override
+    public void SetBooklets(List<Booklet> booklets) {
+
+    }
+
+    @Override
+    public void RemoveBooklet(int id) {
+
+    }
+
+    @Override
+    public void DisplayException(String message) {
+
     }
 }

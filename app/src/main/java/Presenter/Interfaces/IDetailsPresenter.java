@@ -1,9 +1,11 @@
 package Presenter.Interfaces;
 
-import Model.BookDetail;
+import Model.Book;
 import Screens.Interaces.IDetailsScreen;
 
 public interface IDetailsPresenter extends IPresenterBase<IDetailsScreen>{
 
-    BookDetail GetBook(int id);
+    void GetBook(int id);
+
+    void DeleteBook();
 }

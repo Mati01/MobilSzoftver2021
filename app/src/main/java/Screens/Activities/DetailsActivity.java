@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import Dagger.DaggerPresenterComponent;
 import Dagger.PresenterComponent;
+import Model.Book;
 import Presenter.Interfaces.IDetailsPresenter;
 
 import com.example.mobilszoftver2021.R;
@@ -38,5 +39,20 @@ public class DetailsActivity extends AppCompatActivity implements IDetailsScreen
     protected void  onStop() {
         super.onStop();
         this.presenter.DetachScreen();
+    }
+
+    @Override
+    public void DisplayException(String message) {
+
+    }
+
+    @Override
+    public void SetBook(Book book) {
+
+    }
+
+    @Override
+    public void BookDeleted() {
+
     }
 }

@@ -39,4 +39,19 @@ public class CreatorActivity extends AppCompatActivity implements ICreatorScreen
         super.onStop();
         this.presenter.DetachScreen();
     }
+
+    @Override
+    public void DisplayException(String message) {
+
+    }
+
+    @Override
+    public void BookCreated(int id) {
+
+    }
+
+    @Override
+    public void BookUpdated(int id) {
+
+    }
 }
