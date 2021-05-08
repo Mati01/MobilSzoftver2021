@@ -18,7 +18,7 @@ public class Converters {
 
     @TypeConverter
     public static Book.OrderInfoEnum OrderInfoFromString(String value) {
-        return value == null ? null : Book.OrderInfoEnum.valueOf(value);
+        return value == null ? null : Book.OrderInfoEnum.fromString(value);
     }
     @TypeConverter
     public static String OrderInfoToString(Book.OrderInfoEnum orderInfo) {

@@ -48,6 +48,16 @@ public class Book extends Booklet  {
         public String toString() {
             return value;
         }
+
+        public static OrderInfoEnum fromString(String text) {
+            for (OrderInfoEnum b : OrderInfoEnum.values()) {
+                if (b.value.equalsIgnoreCase(text)) {
+                    return b;
+                }
+            }
+
+            throw new IllegalArgumentException("No constant with text " + text + " found");
+        }
     }
 
     public Book(String title, String subtitle, Date releaseDate, String author, String description, String photoUrl, OrderInfoEnum orderInfo) {
@@ -122,7 +132,7 @@ public class Book extends Booklet  {
         StringBuilder sb = new StringBuilder();
         sb.append("class Book {\n");
 
-        sb.append("    id: ").append(toIndentedString(id)).append("\n");
+        sb.append("    Id: ").append(toIndentedString(id)).append("\n");
         sb.append("    title: ").append(toIndentedString(title)).append("\n");
         sb.append("    subtitle: ").append(toIndentedString(subtitle)).append("\n");
         sb.append("    releaseDate: ").append(toIndentedString(releaseDate)).append("\n");

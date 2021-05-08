@@ -26,15 +26,15 @@ public interface LibraryApi {
 
   
   /**
-   * Delete a book by id
+   * Delete a book by Id
    * 
    * @param id 
    * @return Call<Void>
    */
   
-  @DELETE("library/{id}")
+  @DELETE("library/{Id}")
   Call<Void> deleteBooklet(
-    @Path("id") Integer id
+    @Path("Id") Integer id
   );
 
   

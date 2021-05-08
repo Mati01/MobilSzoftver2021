@@ -19,7 +19,7 @@ import com.google.gson.annotations.SerializedName;
 public class Booklet   {
 
     @PrimaryKey(autoGenerate = true)
-    @SerializedName("id")
+    @SerializedName("Id")
     protected Integer id = null;
 
     @SerializedName("title")
@@ -125,7 +125,7 @@ public class Booklet   {
         StringBuilder sb = new StringBuilder();
         sb.append("class Booklet {\n");
 
-        sb.append("    id: ").append(toIndentedString(id)).append("\n");
+        sb.append("    Id: ").append(toIndentedString(id)).append("\n");
         sb.append("    title: ").append(toIndentedString(title)).append("\n");
         sb.append("    subtitle: ").append(toIndentedString(subtitle)).append("\n");
         sb.append("    releaseDate: ").append(toIndentedString(releaseDate)).append("\n");

@@ -1,6 +1,7 @@
 package DataBase;
 
 import android.app.Application;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Build;
 
@@ -17,21 +18,21 @@ public class BookRepository {
 
     private BookDao bookDao;
 
-    public BookRepository(Application application) {
-        BookDatabase database = BookDatabase.getInstance(application);
+    public BookRepository(Context context) {
+        BookDatabase database = BookDatabase.getInstance(context);
         bookDao = database.bookDao();
     }
 
-    public void insert(Book book) {
-        new InsertBookAsyncTask(bookDao).execute(book);
+    public void insert(Book book, Consumer<Integer> callback) {
+        new InsertBookAsyncTask(bookDao, callback).execute(book);
     }
 
-    public void update(Book book) {
-        new UpdateBookAsyncTask(bookDao).execute(book);
+    public void update(Book book, Consumer<Void> callback) {
+        new UpdateBookAsyncTask(bookDao, callback).execute(book);
     }
 
-    public void delete(int id) {
-        new DeleteBookAsyncTask(bookDao).execute(id);
+    public void delete(int id,Consumer<Void> callback) {
+        new DeleteBookAsyncTask(bookDao, callback).execute(id);
     }
 
     public void getBook(int id, Consumer<Book> callback){
@@ -42,25 +43,34 @@ public class BookRepository {
         new QuerBookletsyAsyncTask(bookDao, callback).execute(title, author);
     }
 
-    private static class InsertBookAsyncTask extends AsyncTask<Book, Void, Void> {
+    private static class InsertBookAsyncTask extends AsyncTask<Book, Void, Integer> {
         private BookDao bookDao;
+        private Consumer<Integer> callback = null;
 
-        public InsertBookAsyncTask(BookDao bookDao) {
+        public InsertBookAsyncTask(BookDao bookDao, Consumer<Integer> callback) {
             this.bookDao = bookDao;
+            this.callback = callback;
         }
 
         @Override
-        protected Void doInBackground(Book... books) {
-            bookDao.insert(books[0]);
-            return null;
+        protected Integer doInBackground(Book... books) {
+            return (int)bookDao.insert(books[0]);
+        }
+
+        @RequiresApi(api = Build.VERSION_CODES.N)
+        @Override
+        protected void onPostExecute(Integer result) {
+            callback.accept(result);
         }
     }
 
     private static class UpdateBookAsyncTask extends AsyncTask<Book, Void, Void> {
         private BookDao bookDao;
+        private Consumer<Void> callback = null;
 
-        public UpdateBookAsyncTask(BookDao bookDao) {
+        public UpdateBookAsyncTask(BookDao bookDao, Consumer<Void> callback) {
             this.bookDao = bookDao;
+            this.callback = callback;
         }
 
         @Override
@@ -68,19 +78,33 @@ public class BookRepository {
             bookDao.update(books[0]);
             return null;
         }
+
+        @RequiresApi(api = Build.VERSION_CODES.N)
+        @Override
+        protected void onPostExecute(Void result) {
+            callback.accept(result);
+        }
     }
 
     private static class DeleteBookAsyncTask extends AsyncTask<Integer, Void, Void> {
         private BookDao bookDao;
+        private Consumer<Void> callback = null;
 
-        public DeleteBookAsyncTask(BookDao bookDao) {
+        public DeleteBookAsyncTask(BookDao bookDao, Consumer<Void> callback) {
             this.bookDao = bookDao;
+            this.callback = callback;
         }
 
         @Override
         protected Void doInBackground(Integer... ids) {
             bookDao.delete(ids[0]);
             return null;
+        }
+
+        @RequiresApi(api = Build.VERSION_CODES.N)
+        @Override
+        protected void onPostExecute(Void result) {
+            callback.accept(result);
         }
     }
 

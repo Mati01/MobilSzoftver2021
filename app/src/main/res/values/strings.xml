@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">MobilSzoftver2021</string>
+    <string name="SubTitle_PlaceHolder">SubTitle</string>
+    <string name="Title_PlaceHolder">Title</string>
+    <string name="ReleaseDate_PlaceHolder">ReleaseDate</string>
+    <string name="Author_PlaceHolder">Author</string>
+    <string name="CreateNew">Create New</string>
+    <string name="details_image_description">The picture belonging to the displayed Book</string>
+    <string name="Deails_PlaceHolder">Details of the book.</string>
+    <string name="availiblity_label">Rendelkezésre állás:</string>
+    <string name="avalibility_placeholder">Avaibility</string>
+    <string name="delete_button">Delete</string>
+    <string name="Description_PlaceHolder">Description</string>
+    <string name="Create">Create</string>
+    <string name="edit">Edit</string>
+    <string name="update">Update</string>
+
+    <string-array name="avaibilities">
+        <item>None</item>
+        <item>EBook</item>
+        <item>Store</item>
+    </string-array>
 </resources>

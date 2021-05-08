@@ -17,7 +17,7 @@ import Model.Booklet;
 public interface BookDao {
 
     @Insert
-    void insert(Book book);
+    long insert(Book book);
 
     @Update
     void update(Book book);
@@ -26,8 +26,8 @@ public interface BookDao {
     void delete(int id);
 
     @Query("SELECT * FROM " + Book.tableName +
-            " WHERE (:title IS NULL OR Title like :title)" +
-            " and (:author IS NULL OR Author like :author)")
+            " WHERE (:title IS NULL OR :title IS '' OR Title like :title)" +
+            " and (:author IS NULL OR :author IS '' OR Author like :author)")
     List<Booklet> getBooklets(String title, String author);
 
     @Query("SELECT * FROM " + Book.tableName + " ORDER BY id ASC")

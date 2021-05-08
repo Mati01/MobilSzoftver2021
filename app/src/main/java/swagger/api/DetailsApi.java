@@ -8,28 +8,28 @@ import Model.Book;
 public interface DetailsApi {
   
   /**
-   * Get the deatails of a book by id
+   * Get the deatails of a book by Id
    * 
    * @param id 
    * @return Call<Book>
    */
   
-  @GET("details/{id}")
+  @GET("details/{Id}")
   Call<Book> getDetails(
-    @Path("id") Integer id
+    @Path("Id") Integer id
   );
 
   
   /**
-   * Delete a book by id
+   * Delete a book by Id
    * 
    * @param id 
    * @return Call<Void>
    */
   
-  @DELETE("details/{id}")
+  @DELETE("details/{Id}")
   Call<Void> deleteBook(
-    @Path("id") Integer id
+    @Path("Id") Integer id
   );
 
   

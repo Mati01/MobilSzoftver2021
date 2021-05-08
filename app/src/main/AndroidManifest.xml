@@ -2,19 +2,30 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mobilszoftver2021">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
+        android:name="Screens.Application.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MobilSzoftver2021">
-        <activity android:name="Screens.Activities.DetailsActivity"></activity>
-        <activity android:name="Screens.Activities.CreatorActivity" />
-        <activity android:name="Screens.Activities.LibraryActivity">
+
+        <activity
+            android:name="Screens.Activities.DetailsActivity"
+            android:parentActivityName="Screens.Activities.LibraryActivity"
+            android:label="Details">
+        </activity>
+        <activity
+            android:name="Screens.Activities.CreatorActivity"
+            android:parentActivityName="Screens.Activities.LibraryActivity"
+            android:label="Creator"/>
+        <activity android:name="Screens.Activities.LibraryActivity"
+            android:windowSoftInputMode="adjustPan"> >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

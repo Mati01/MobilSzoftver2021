@@ -4,36 +4,45 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
+import DataBase.BookRepository;
 import Model.Book;
-import Model.Booklet;
-import Presenter.Interfaces.IDetailsPresenter;
+import Presenter.Interfaces.Api.IApiDetailsPresenter;
+import Presenter.Interfaces.Repo.IRepoDetailsPresenter;
 import Screens.Interaces.IDetailsScreen;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import swagger.api.DetailsApi;
 
-public class DetailsPresenter extends PresenterBase<IDetailsScreen> implements IDetailsPresenter {
+public class DetailsPresenter extends PresenterBase<IDetailsScreen> implements IApiDetailsPresenter, IRepoDetailsPresenter {
 
-    private static  final String TAG = "DetailsPresenter";
+    private static final String TAG = "DetailsPresenter";
 
     private DetailsApi detailsApi;
 
-    private Book book;
+    private static Integer Id;
 
-    @Inject
-    public DetailsPresenter(DetailsApi detailsApi) {
-        this.detailsApi = detailsApi;
-        book = null;
+    @Override
+    public final Integer GetBookId() {
+        return DetailsPresenter.Id;
     }
 
     @Override
-    public void GetBook(int id) {
-        Call<Book> call = detailsApi.getDetails(id);
+    public void SetBookId(int id) {
+        DetailsPresenter.Id = id;
+    }
+
+    @Inject
+    public DetailsPresenter(BookRepository bookRepo, DetailsApi detailsApi) {
+        super(bookRepo);
+        this.detailsApi = detailsApi;
+    }
+
+    @Override
+    public void ApiGetBook() {
+        Call<Book> call = detailsApi.getDetails(Id);
 
         call.enqueue(new Callback<Book>() {
             @Override
@@ -43,10 +52,7 @@ public class DetailsPresenter extends PresenterBase<IDetailsScreen> implements I
                     screen.DisplayException("Code " + response.code());
                     return;
                 }
-
-                book = response.body();
-
-                screen.SetBook(book);
+                screen.SetBook(response.body());
             }
 
             @Override
@@ -57,8 +63,8 @@ public class DetailsPresenter extends PresenterBase<IDetailsScreen> implements I
     }
 
     @Override
-    public void DeleteBook() {
-        Call<Void> call = detailsApi.deleteBook(book.getId());
+    public void ApiDeleteBook() {
+        Call<Void> call = detailsApi.deleteBook(Id);
 
         call.enqueue(new Callback<Void>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
@@ -68,9 +74,6 @@ public class DetailsPresenter extends PresenterBase<IDetailsScreen> implements I
                     screen.DisplayException("Code " + response.code());
                     return;
                 }
-
-                book = null;
-
                 screen.BookDeleted();
             }
 
@@ -79,5 +82,15 @@ public class DetailsPresenter extends PresenterBase<IDetailsScreen> implements I
                 screen.DisplayException(t.getMessage());
             }
         });
+    }
+
+    @Override
+    public void RepoGetBook() {
+        bookRepo.getBook(Id, book -> screen.SetBook(book));
+    }
+
+    @Override
+    public void RepoDeleteBook() {
+        bookRepo.delete(Id, Void -> screen.BookDeleted());
     }
 }

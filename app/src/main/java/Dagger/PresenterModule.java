@@ -1,9 +1,14 @@
 package Dagger;
 
-import javax.inject.Singleton;
-
+import DataBase.BookRepository;
 import Presenter.Classes.*;
-import Presenter.Interfaces.*;
+import Presenter.Interfaces.Api.IApiCreatorPresenter;
+import Presenter.Interfaces.Api.IApiDetailsPresenter;
+import Presenter.Interfaces.Api.IApiLibraryPresenter;
+import Presenter.Interfaces.Repo.IRepoCreatorPresenter;
+import Presenter.Interfaces.Repo.IRepoDetailsPresenter;
+import Presenter.Interfaces.Repo.IRepoLibraryPresenter;
+import Screens.Application.MyApplication;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;
@@ -16,31 +21,52 @@ import swagger.api.LibraryApi;
 @Module
 public class PresenterModule {
 
+    private  static  BookRepository bookRepository;
+    private static OkHttpClient okHttpClient;
+
     @Provides
-    static ILibraryPresenter providesILibraryPresenter(LibraryPresenter libraryPresenter) {
+    static IApiLibraryPresenter providesIApiLibraryPresenter(LibraryPresenter libraryPresenter) {
         return libraryPresenter;
     }
 
     @Provides
-    static ICreatorPresenter providesICreatorPresenter(CreatorPresenter creatorPresenter) {
+    static IApiCreatorPresenter providesIApiCreatorPresenter(CreatorPresenter creatorPresenter) {
         return creatorPresenter;
     }
 
     @Provides
-    static IDetailsPresenter providesIDetailsPresenter(DetailsPresenter detailsPresenter) {
+    static IApiDetailsPresenter providesIApiDetailsPresenter(DetailsPresenter detailsPresenter) {
         return detailsPresenter;
     }
 
     @Provides
-    static OkHttpClient providesOkHttpClient(){
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        return builder.build();
+    static IRepoLibraryPresenter providesIRepoLibraryPresenter(LibraryPresenter libraryPresenter) {
+        return libraryPresenter;
+    }
+
+    @Provides
+    static IRepoCreatorPresenter providesIRepoCreatorPresenter(CreatorPresenter creatorPresenter) {
+        return creatorPresenter;
+    }
+
+    @Provides
+    static IRepoDetailsPresenter providesIRepoDetailsPresenter(DetailsPresenter detailsPresenter) {
+        return detailsPresenter;
+    }
+
+    @Provides
+    static OkHttpClient providesOkHttpClient() {
+        if (okHttpClient == null) {
+            okHttpClient = new OkHttpClient.Builder().build();
+        }
+
+        return okHttpClient;
     }
 
     @Provides
     static Retrofit providesRetofit(OkHttpClient client){
         return new Retrofit.Builder()
-                .baseUrl("")
+                .baseUrl("http://test-test.domainname.com")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -59,6 +85,14 @@ public class PresenterModule {
     @Provides
     static EditorApi providesEditorApi(Retrofit retrofit){
         return retrofit.create(EditorApi.class);
+    }
+
+    @Provides
+    static BookRepository providesBookRepository(){
+        if (bookRepository == null){
+            bookRepository = new BookRepository(MyApplication.getAppContext());
+        }
+       return bookRepository;
     }
 
 

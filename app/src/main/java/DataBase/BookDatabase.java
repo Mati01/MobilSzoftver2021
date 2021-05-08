@@ -13,6 +13,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import Model.Book;
 
@@ -20,7 +21,7 @@ import Model.Book;
 @TypeConverters({Converters.class})
 public abstract class BookDatabase extends RoomDatabase {
 
-    private  static BookDatabase instance;
+    public   static BookDatabase instance;
 
     public  abstract BookDao bookDao();
 
